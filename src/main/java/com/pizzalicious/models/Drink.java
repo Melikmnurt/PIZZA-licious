@@ -3,10 +3,10 @@ package com.pizzalicious.models;
 // Represents a drink that can be added to an order
 public class Drink {
 
-    // Size of the drink: SMALL, MEDIUM, or LARGE
+    // Size of the drink
     private DrinkSize size;
 
-    // Flavor of the drink, such as Sprite, Coke, Root Beer, etc.
+    // Flavor of the drink
     private String flavor;
 
     // Constructor
@@ -25,18 +25,25 @@ public class Drink {
         return flavor;
     }
 
-    // Calculates the drink price based on size
+    // Calculates drink price based on size
     public double calculatePrice() {
-        if (size == DrinkSize.SMALL) {
-            return 2.00;
-        } else if (size == DrinkSize.MEDIUM) {
-            return 2.50;
-        } else {
-            return 3.00;
+
+        switch (size) {
+
+            case SMALL:
+                return 2.00;
+
+            case MEDIUM:
+                return 2.50;
+
+            case LARGE:
+                return 3.00;
+
+            default:
+                return 0;
         }
     }
 
-    // Displays the drink in a clean format
     @Override
     public String toString() {
         return size + " " + flavor;

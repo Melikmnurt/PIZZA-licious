@@ -76,4 +76,7 @@ public class Pizza {
     public void addSauce(Topping topping) {
         sauces.add(topping);
     }
+    public double calculatePrice() {
+        return 0;
+    }
 }

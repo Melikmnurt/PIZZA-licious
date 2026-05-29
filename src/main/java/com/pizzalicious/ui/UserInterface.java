@@ -34,10 +34,7 @@ public class UserInterface {
             System.out.println(GREEN + "1) New Order" + RESET);
             System.out.println(RED + "0) Exit" + RESET);
 
-            System.out.print(YELLOW + "\nSelect an option: " + RESET);
-
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = readInt(YELLOW + "\nSelect an option: " + RESET);
 
             switch (choice) {
 
@@ -77,16 +74,15 @@ public class UserInterface {
             System.out.println("          ORDER MENU");
             System.out.println("================================" + RESET);
 
+            displayCurrentOrderItems(order);
+
             System.out.println("1) Add Pizza");
             System.out.println("2) Add Drink");
             System.out.println("3) Add Garlic Knots");
             System.out.println("4) Checkout");
             System.out.println("0) Cancel Order");
 
-            System.out.print(YELLOW + "\nSelect an option: " + RESET);
-
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = readInt(YELLOW + "\nSelect an option: " + RESET);
 
             switch (choice) {
 
@@ -135,10 +131,7 @@ public class UserInterface {
         System.out.println("3) Veggie");
         System.out.println("0) Back");
 
-        System.out.print(YELLOW + "\nChoice: " + RESET);
-
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = readInt(YELLOW + "\nChoice: " + RESET);
 
         Pizza pizza = null;
 
@@ -166,6 +159,7 @@ public class UserInterface {
                 return;
         }
 
+        customizeSignaturePizza(pizza);
         order.addPizza(pizza);
 
         System.out.println(
@@ -183,8 +177,7 @@ public class UserInterface {
         System.out.println("2) Medium");
         System.out.println("3) Large");
 
-        int sizeChoice = scanner.nextInt();
-        scanner.nextLine();
+        int sizeChoice = readInt(YELLOW + "Choice: " + RESET);
 
         PizzaSize size;
 
@@ -216,8 +209,7 @@ public class UserInterface {
         System.out.println("3) Thick");
         System.out.println("4) Cauliflower");
 
-        int crustChoice = scanner.nextInt();
-        scanner.nextLine();
+        int crustChoice = readInt(YELLOW + "Choice: " + RESET);
 
         CrustType crustType;
 
@@ -251,8 +243,14 @@ public class UserInterface {
         System.out.println("1) Yes");
         System.out.println("2) No");
 
-        int stuffedChoice = scanner.nextInt();
-        scanner.nextLine();
+        int stuffedChoice = readInt(YELLOW + "Choice: " + RESET);
+
+        if (stuffedChoice != 1 && stuffedChoice != 2) {
+            System.out.println(
+                    RED + "Invalid stuffed crust selection." + RESET
+            );
+            return;
+        }
 
         boolean stuffedCrust = (stuffedChoice == 1);
 
@@ -283,11 +281,13 @@ public class UserInterface {
 
             System.out.println("1) Pepperoni");
             System.out.println("2) Sausage");
-            System.out.println("3) Bacon");
+            System.out.println("3) Ham");
+            System.out.println("4) Bacon");
+            System.out.println("5) Chicken");
+            System.out.println("6) Meatball");
             System.out.println("0) Done");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = readInt(YELLOW + "Choice: " + RESET);
 
             if (choice == 0) {
                 return;
@@ -306,17 +306,26 @@ public class UserInterface {
                     break;
 
                 case 3:
+                    meatName = "Ham";
+                    break;
+
+                case 4:
                     meatName = "Bacon";
+                    break;
+
+                case 5:
+                    meatName = "Chicken";
+                    break;
+
+                case 6:
+                    meatName = "Meatball";
                     break;
 
                 default:
                     continue;
             }
 
-            System.out.print("Quantity: ");
-
-            int quantity = scanner.nextInt();
-            scanner.nextLine();
+            int quantity = readPositiveInt("Quantity: ");
 
             pizza.addMeat(
                     new Topping(
@@ -334,12 +343,13 @@ public class UserInterface {
             System.out.println("\nADD CHEESES");
 
             System.out.println("1) Mozzarella");
-            System.out.println("2) Cheddar");
-            System.out.println("3) Parmesan");
+            System.out.println("2) Parmesan");
+            System.out.println("3) Ricotta");
+            System.out.println("4) Goat Cheese");
+            System.out.println("5) Buffalo");
             System.out.println("0) Done");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = readInt(YELLOW + "Choice: " + RESET);
 
             if (choice == 0) {
                 return;
@@ -354,21 +364,26 @@ public class UserInterface {
                     break;
 
                 case 2:
-                    cheeseName = "Cheddar";
+                    cheeseName = "Parmesan";
                     break;
 
                 case 3:
-                    cheeseName = "Parmesan";
+                    cheeseName = "Ricotta";
+                    break;
+
+                case 4:
+                    cheeseName = "Goat Cheese";
+                    break;
+
+                case 5:
+                    cheeseName = "Buffalo";
                     break;
 
                 default:
                     continue;
             }
 
-            System.out.print("Quantity: ");
-
-            int quantity = scanner.nextInt();
-            scanner.nextLine();
+            int quantity = readPositiveInt("Quantity: ");
 
             pizza.addCheese(
                     new Topping(
@@ -391,10 +406,12 @@ public class UserInterface {
             System.out.println("4) Bell Peppers");
             System.out.println("5) Spinach");
             System.out.println("6) Basil");
+            System.out.println("7) Mushrooms");
+            System.out.println("8) Pineapple");
+            System.out.println("9) Anchovies");
             System.out.println("0) Done");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = readInt(YELLOW + "Choice: " + RESET);
 
             if (choice == 0) {
                 return;
@@ -428,14 +445,23 @@ public class UserInterface {
                     toppingName = "Basil";
                     break;
 
+                case 7:
+                    toppingName = "Mushrooms";
+                    break;
+
+                case 8:
+                    toppingName = "Pineapple";
+                    break;
+
+                case 9:
+                    toppingName = "Anchovies";
+                    break;
+
                 default:
                     continue;
             }
 
-            System.out.print("Quantity: ");
-
-            int quantity = scanner.nextInt();
-            scanner.nextLine();
+            int quantity = readPositiveInt("Quantity: ");
 
             pizza.addRegularTopping(
                     new Topping(
@@ -454,11 +480,13 @@ public class UserInterface {
 
             System.out.println("1) Marinara");
             System.out.println("2) Alfredo");
-            System.out.println("3) Olive Oil");
+            System.out.println("3) Pesto");
+            System.out.println("4) BBQ");
+            System.out.println("5) Buffalo");
+            System.out.println("6) Olive Oil");
             System.out.println("0) Done");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = readInt(YELLOW + "Choice: " + RESET);
 
             if (choice == 0) {
                 return;
@@ -477,6 +505,18 @@ public class UserInterface {
                     break;
 
                 case 3:
+                    sauceName = "Pesto";
+                    break;
+
+                case 4:
+                    sauceName = "BBQ";
+                    break;
+
+                case 5:
+                    sauceName = "Buffalo";
+                    break;
+
+                case 6:
                     sauceName = "Olive Oil";
                     break;
 
@@ -484,10 +524,7 @@ public class UserInterface {
                     continue;
             }
 
-            System.out.print("Quantity: ");
-
-            int quantity = scanner.nextInt();
-            scanner.nextLine();
+            int quantity = readPositiveInt("Quantity: ");
 
             pizza.addSauce(
                     new Topping(
@@ -511,8 +548,7 @@ public class UserInterface {
         System.out.println("2) Medium");
         System.out.println("3) Large");
 
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = readInt(YELLOW + "Choice: " + RESET);
 
         DrinkSize size;
 
@@ -550,10 +586,7 @@ public class UserInterface {
         System.out.println();
         System.out.println(CYAN + "ADD GARLIC KNOTS" + RESET);
 
-        System.out.print("Quantity: ");
-
-        int quantity = scanner.nextInt();
-        scanner.nextLine();
+        int quantity = readPositiveInt("Quantity: ");
 
         order.addGarlicKnots(quantity);
 
@@ -582,10 +615,7 @@ public class UserInterface {
         System.out.println("1) Confirm");
         System.out.println("0) Cancel");
 
-        System.out.print(YELLOW + "\nChoice: " + RESET);
-
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = readInt(YELLOW + "\nChoice: " + RESET);
 
         switch (choice) {
 
@@ -594,7 +624,15 @@ public class UserInterface {
                 ReceiptManager receiptManager =
                         new ReceiptManager();
 
-                receiptManager.saveReceipt(order);
+                boolean receiptSaved = receiptManager.saveReceipt(order);
+
+                if (!receiptSaved) {
+                    System.out.println(
+                            RED + "\nOrder was not completed because the receipt could not be saved." + RESET
+                    );
+
+                    return false;
+                }
 
                 System.out.println(
                         GREEN + "\nOrder completed successfully!" + RESET
@@ -605,10 +643,10 @@ public class UserInterface {
             case 0:
 
                 System.out.println(
-                        RED + "\nCheckout cancelled." + RESET
+                        RED + "\nCheckout cancelled. Order deleted." + RESET
                 );
 
-                return false;
+                return true;
 
             default:
 
@@ -617,6 +655,121 @@ public class UserInterface {
                 );
 
                 return false;
+        }
+    }
+
+    private void displayCurrentOrderItems(Order order) {
+
+        if (order.getItems().isEmpty()) {
+            System.out.println("Current order: empty\n");
+            return;
+        }
+
+        System.out.println("Current order (newest first):");
+
+        for (int i = order.getItems().size() - 1; i >= 0; i--) {
+            System.out.println((order.getItems().size() - i)
+                    + ") "
+                    + order.getItems().get(i));
+        }
+
+        System.out.println();
+    }
+
+    private void customizeSignaturePizza(Pizza pizza) {
+
+        boolean customizing = true;
+
+        while (customizing) {
+
+            System.out.println();
+            System.out.println(CYAN + "CUSTOMIZE SIGNATURE PIZZA" + RESET);
+            System.out.println(pizza);
+            System.out.println("\n1) Add Meat");
+            System.out.println("2) Add Cheese");
+            System.out.println("3) Add Regular Topping");
+            System.out.println("4) Add Sauce");
+            System.out.println("5) Remove Topping");
+            System.out.println("0) Done");
+
+            int choice = readInt(YELLOW + "\nChoice: " + RESET);
+
+            switch (choice) {
+
+                case 1:
+                    addMeatToppings(pizza);
+                    break;
+
+                case 2:
+                    addCheeseToppings(pizza);
+                    break;
+
+                case 3:
+                    addRegularToppings(pizza);
+                    break;
+
+                case 4:
+                    addSauces(pizza);
+                    break;
+
+                case 5:
+                    removeTopping(pizza);
+                    break;
+
+                case 0:
+                    customizing = false;
+                    break;
+
+                default:
+                    System.out.println(
+                            RED + "Invalid option. Please try again." + RESET
+                    );
+            }
+        }
+    }
+
+    private void removeTopping(Pizza pizza) {
+
+        System.out.print("Enter topping name to remove: ");
+        String toppingName = scanner.nextLine();
+
+        if (pizza.removeTopping(toppingName)) {
+            System.out.println(GREEN + "Topping removed." + RESET);
+        } else {
+            System.out.println(RED + "Topping not found." + RESET);
+        }
+    }
+
+    private int readPositiveInt(String prompt) {
+
+        int value = readInt(prompt);
+
+        while (value <= 0) {
+            System.out.println(RED + "Please enter a number greater than 0." + RESET);
+            value = readInt(prompt);
+        }
+
+        return value;
+    }
+
+    private int readInt(String prompt) {
+
+        while (true) {
+
+            System.out.print(prompt);
+
+            if (!scanner.hasNextLine()) {
+                System.out.println();
+                return 0;
+            }
+
+            String input = scanner.nextLine();
+
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println(RED + "Please enter a valid number." + RESET);
+            }
         }
     }
 }

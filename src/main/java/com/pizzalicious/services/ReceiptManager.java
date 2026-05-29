@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 // Handles saving receipts
 public class ReceiptManager {
 
-    public void saveReceipt(Order order) {
+    public boolean saveReceipt(Order order) {
 
         try {
 
@@ -45,6 +45,7 @@ public class ReceiptManager {
             writer.close();
 
             System.out.println("Receipt saved: " + fileName);
+            return true;
 
         } catch (IOException e) {
 
@@ -53,6 +54,7 @@ public class ReceiptManager {
             );
 
             e.printStackTrace();
+            return false;
         }
     }
 }

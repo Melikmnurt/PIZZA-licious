@@ -2,7 +2,7 @@ package com.pizzalicious.models;
 import java.util.ArrayList;
 
 // Represents a pizza ordered by a customer
-public class Pizza {
+public class Pizza implements OrderItem {
 
     private PizzaSize size;
     private CrustType crustType;
@@ -130,7 +130,29 @@ public class Pizza {
         sauces.add(topping);
     }
 
+    public boolean removeTopping(String toppingName) {
+
+        return removeFromList(meats, toppingName)
+                || removeFromList(cheeses, toppingName)
+                || removeFromList(regularToppings, toppingName)
+                || removeFromList(sauces, toppingName);
+    }
+
+    private boolean removeFromList(ArrayList<Topping> toppings, String toppingName) {
+
+        for (Topping topping : toppings) {
+
+            if (topping.getName().equalsIgnoreCase(toppingName)) {
+                toppings.remove(topping);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     // Calculate pizza price
+    @Override
     public double calculatePrice() {
 
         double total = 0;

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Order {
 
     // Items in the order
+    private ArrayList<OrderItem> items;
     private ArrayList<Pizza> pizzas;
     private ArrayList<Drink> drinks;
 
@@ -15,6 +16,7 @@ public class Order {
     // Constructor
     public Order() {
 
+        items = new ArrayList<>();
         pizzas = new ArrayList<>();
         drinks = new ArrayList<>();
         garlicKnotsQuantity = 0;
@@ -22,17 +24,24 @@ public class Order {
 
     // Adds a pizza to the order
     public void addPizza(Pizza pizza) {
+        items.add(pizza);
         pizzas.add(pizza);
     }
 
     // Adds a drink to the order
     public void addDrink(Drink drink) {
+        items.add(drink);
         drinks.add(drink);
     }
 
     // Adds garlic knots to the order
     public void addGarlicKnots(int quantity) {
+        items.add(new GarlicKnots(quantity));
         garlicKnotsQuantity += quantity;
+    }
+
+    public ArrayList<OrderItem> getItems() {
+        return items;
     }
 
     // Returns all pizzas
@@ -53,9 +62,7 @@ public class Order {
     // Checks if the order satisfies the assignment requirements
     public boolean isValidOrder() {
 
-        return !(pizzas.isEmpty()
-                && drinks.isEmpty()
-                && garlicKnotsQuantity == 0);
+        return !items.isEmpty();
     }
 
     // Calculates total cost of the order
@@ -63,18 +70,9 @@ public class Order {
 
         double total = 0;
 
-        // Add pizza prices
-        for (Pizza pizza : pizzas) {
-            total += pizza.calculatePrice();
+        for (OrderItem item : items) {
+            total += item.calculatePrice();
         }
-
-        // Add drink prices
-        for (Drink drink : drinks) {
-            total += drink.calculatePrice();
-        }
-
-        // Add garlic knots
-        total += garlicKnotsQuantity * 1.50;
 
         return total;
     }
@@ -87,18 +85,8 @@ public class Order {
         orderDetails.append("Order Summary\n");
         orderDetails.append("-------------------------\n");
 
-        for (Pizza pizza : pizzas) {
-            orderDetails.append(pizza).append("\n\n");
-        }
-
-        for (Drink drink : drinks) {
-            orderDetails.append(drink).append("\n");
-        }
-
-        if (garlicKnotsQuantity > 0) {
-            orderDetails.append("Garlic Knots x")
-                    .append(garlicKnotsQuantity)
-                    .append("\n");
+        for (int i = items.size() - 1; i >= 0; i--) {
+            orderDetails.append(items.get(i)).append("\n\n");
         }
 
         orderDetails.append("\nTotal: $")

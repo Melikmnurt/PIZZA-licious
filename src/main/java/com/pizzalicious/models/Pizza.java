@@ -5,12 +5,10 @@ import java.util.ArrayList;
 // Represents a pizza ordered by a customer
 public class Pizza {
 
-    // Pizza information
     private PizzaSize size;
     private CrustType crustType;
     private boolean stuffedCrust;
 
-    // Pizza toppings
     private ArrayList<Topping> meats;
     private ArrayList<Topping> cheeses;
     private ArrayList<Topping> regularToppings;
@@ -59,7 +57,7 @@ public class Pizza {
         return sauces;
     }
 
-    // Methods for adding toppings
+    // Add toppings
 
     public void addMeat(Topping topping) {
         meats.add(topping);
@@ -76,7 +74,157 @@ public class Pizza {
     public void addSauce(Topping topping) {
         sauces.add(topping);
     }
+
+    // Calculate pizza price
     public double calculatePrice() {
-        return 0;
+
+        double total = 0;
+
+        // Base pizza price
+        switch (size) {
+
+            case PERSONAL:
+                total += 8.50;
+                break;
+
+            case MEDIUM:
+                total += 12.00;
+                break;
+
+            case LARGE:
+                total += 16.50;
+                break;
+        }
+
+        // Meat pricing
+        for (Topping meat : meats) {
+
+            int quantity = meat.getQuantity();
+
+            if (size == PizzaSize.PERSONAL) {
+
+                total += 1.00;
+
+                if (quantity > 1) {
+                    total += (quantity - 1) * 0.50;
+                }
+
+            } else if (size == PizzaSize.MEDIUM) {
+
+                total += 2.00;
+
+                if (quantity > 1) {
+                    total += (quantity - 1) * 1.00;
+                }
+
+            } else {
+
+                total += 3.00;
+
+                if (quantity > 1) {
+                    total += (quantity - 1) * 1.50;
+                }
+            }
+        }
+
+        // Cheese pricing
+        for (Topping cheese : cheeses) {
+
+            int quantity = cheese.getQuantity();
+
+            if (size == PizzaSize.PERSONAL) {
+
+                total += 0.75;
+
+                if (quantity > 1) {
+                    total += (quantity - 1) * 0.30;
+                }
+
+            } else if (size == PizzaSize.MEDIUM) {
+
+                total += 1.50;
+
+                if (quantity > 1) {
+                    total += (quantity - 1) * 0.60;
+                }
+
+            } else {
+
+                total += 2.25;
+
+                if (quantity > 1) {
+                    total += (quantity - 1) * 0.90;
+                }
+            }
+        }
+
+        // Stuffed crust has no additional charge
+        return total;
+    }
+
+    @Override
+    public String toString() {
+
+        StringBuilder pizzaDetails = new StringBuilder();
+
+        pizzaDetails.append(size)
+                .append(" Pizza\n");
+
+        pizzaDetails.append("Crust: ")
+                .append(crustType)
+                .append("\n");
+
+        if (stuffedCrust) {
+            pizzaDetails.append("Stuffed Crust\n");
+        }
+
+        if (!meats.isEmpty()) {
+
+            pizzaDetails.append("Meats:\n");
+
+            for (Topping topping : meats) {
+                pizzaDetails.append("  - ")
+                        .append(topping)
+                        .append("\n");
+            }
+        }
+
+        if (!cheeses.isEmpty()) {
+
+            pizzaDetails.append("Cheeses:\n");
+
+            for (Topping topping : cheeses) {
+                pizzaDetails.append("  - ")
+                        .append(topping)
+                        .append("\n");
+            }
+        }
+
+        if (!regularToppings.isEmpty()) {
+
+            pizzaDetails.append("Regular Toppings:\n");
+
+            for (Topping topping : regularToppings) {
+                pizzaDetails.append("  - ")
+                        .append(topping)
+                        .append("\n");
+            }
+        }
+
+        if (!sauces.isEmpty()) {
+
+            pizzaDetails.append("Sauces:\n");
+
+            for (Topping topping : sauces) {
+                pizzaDetails.append("  - ")
+                        .append(topping)
+                        .append("\n");
+            }
+        }
+
+        pizzaDetails.append("Price: $")
+                .append(String.format("%.2f", calculatePrice()));
+
+        return pizzaDetails.toString();
     }
 }

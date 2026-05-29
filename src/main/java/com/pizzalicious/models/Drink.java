@@ -1,7 +1,7 @@
 package com.pizzalicious.models;
 
 // Represents a drink that can be added to an order
-public class Drink {
+public class Drink implements OrderItem {
 
     // Size of the drink
     private DrinkSize size;
@@ -26,6 +26,7 @@ public class Drink {
     }
 
     // Calculates drink price based on size
+    @Override
     public double calculatePrice() {
 
         switch (size) {
@@ -46,6 +47,8 @@ public class Drink {
 
     @Override
     public String toString() {
-        return size + " " + flavor;
+        return size + " " + flavor
+                + " Drink - $"
+                + String.format("%.2f", calculatePrice());
     }
 }

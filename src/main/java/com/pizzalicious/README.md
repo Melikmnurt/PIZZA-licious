@@ -94,7 +94,7 @@ src
 
 ## UML Diagram
 
-![UML Diagram](diagrams/uml-diagram.png)
+![UML Diagram](../../../../../diagrams/PIZZA-licious.png)
 
 ---
 

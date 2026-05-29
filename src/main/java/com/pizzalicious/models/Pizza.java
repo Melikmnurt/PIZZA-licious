@@ -60,18 +60,74 @@ public class Pizza {
     // Add toppings
 
     public void addMeat(Topping topping) {
+
+        for (Topping existing : meats) {
+
+            if (existing.getName().equalsIgnoreCase(topping.getName())) {
+
+                existing.setQuantity(
+                        existing.getQuantity()
+                                + topping.getQuantity()
+                );
+
+                return;
+            }
+        }
+
         meats.add(topping);
     }
 
     public void addCheese(Topping topping) {
+
+        for (Topping existing : cheeses) {
+
+            if (existing.getName().equalsIgnoreCase(topping.getName())) {
+
+                existing.setQuantity(
+                        existing.getQuantity()
+                                + topping.getQuantity()
+                );
+
+                return;
+            }
+        }
+
         cheeses.add(topping);
     }
 
     public void addRegularTopping(Topping topping) {
+
+        for (Topping existing : regularToppings) {
+
+            if (existing.getName().equalsIgnoreCase(topping.getName())) {
+
+                existing.setQuantity(
+                        existing.getQuantity()
+                                + topping.getQuantity()
+                );
+
+                return;
+            }
+        }
+
         regularToppings.add(topping);
     }
 
     public void addSauce(Topping topping) {
+
+        for (Topping existing : sauces) {
+
+            if (existing.getName().equalsIgnoreCase(topping.getName())) {
+
+                existing.setQuantity(
+                        existing.getQuantity()
+                                + topping.getQuantity()
+                );
+
+                return;
+            }
+        }
+
         sauces.add(topping);
     }
 

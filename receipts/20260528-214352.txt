@@ -1,0 +1,30 @@
+Order Summary
+-------------------------
+MEDIUM Pizza
+Crust: REGULAR
+Cheeses:
+  - Mozzarella x1
+Regular Toppings:
+  - Tomatoes x1
+  - Basil x1
+Sauces:
+  - Marinara x1
+  - Olive Oil x1
+Price: $13.50
+
+MEDIUM Pizza
+Crust: REGULAR
+Cheeses:
+  - Mozzarella x1
+Regular Toppings:
+  - Tomatoes x1
+  - Basil x1
+Sauces:
+  - Marinara x1
+  - Olive Oil x1
+Price: $13.50
+
+LARGE Sprite
+Garlic Knots x4
+
+Total: $36.00

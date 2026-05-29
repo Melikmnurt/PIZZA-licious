@@ -130,8 +130,10 @@ public class UserInterface {
         System.out.println();
         System.out.println(CYAN + "SELECT PIZZA TYPE" + RESET);
 
-        System.out.println("1) Margherita");
-        System.out.println("2) Veggie");
+        System.out.println("1) Custom Pizza");
+        System.out.println("2) Margherita");
+        System.out.println("3) Veggie");
+        System.out.println("0) Back");
 
         System.out.print(YELLOW + "\nChoice: " + RESET);
 
@@ -143,12 +145,19 @@ public class UserInterface {
         switch (choice) {
 
             case 1:
+                addCustomPizza(order);
+                return;
+
+            case 2:
                 pizza = new MargheritaPizza();
                 break;
 
-            case 2:
+            case 3:
                 pizza = new VeggiePizza();
                 break;
+
+            case 0:
+                return;
 
             default:
                 System.out.println(
@@ -161,6 +170,103 @@ public class UserInterface {
 
         System.out.println(
                 GREEN + "\nPizza added successfully!" + RESET
+        );
+    }
+    private void addCustomPizza(Order order) {
+
+        System.out.println();
+        System.out.println(CYAN + "CUSTOM PIZZA" + RESET);
+
+        // Select Size
+        System.out.println("\nSelect Size");
+        System.out.println("1) Personal");
+        System.out.println("2) Medium");
+        System.out.println("3) Large");
+
+        int sizeChoice = scanner.nextInt();
+        scanner.nextLine();
+
+        PizzaSize size;
+
+        switch (sizeChoice) {
+
+            case 1:
+                size = PizzaSize.PERSONAL;
+                break;
+
+            case 2:
+                size = PizzaSize.MEDIUM;
+                break;
+
+            case 3:
+                size = PizzaSize.LARGE;
+                break;
+
+            default:
+                System.out.println(
+                        RED + "Invalid size selected." + RESET
+                );
+                return;
+        }
+
+        // Select Crust
+        System.out.println("\nSelect Crust");
+        System.out.println("1) Thin");
+        System.out.println("2) Regular");
+        System.out.println("3) Thick");
+        System.out.println("4) Cauliflower");
+
+        int crustChoice = scanner.nextInt();
+        scanner.nextLine();
+
+        CrustType crustType;
+
+        switch (crustChoice) {
+
+            case 1:
+                crustType = CrustType.THIN;
+                break;
+
+            case 2:
+                crustType = CrustType.REGULAR;
+                break;
+
+            case 3:
+                crustType = CrustType.THICK;
+                break;
+
+            case 4:
+                crustType = CrustType.CAULIFLOWER;
+                break;
+
+            default:
+                System.out.println(
+                        RED + "Invalid crust selected." + RESET
+                );
+                return;
+        }
+
+        // Stuffed Crust
+        System.out.println("\nStuffed Crust?");
+        System.out.println("1) Yes");
+        System.out.println("2) No");
+
+        int stuffedChoice = scanner.nextInt();
+        scanner.nextLine();
+
+        boolean stuffedCrust = (stuffedChoice == 1);
+
+        // Create Pizza
+        Pizza pizza = new Pizza(
+                size,
+                crustType,
+                stuffedCrust
+        );
+
+        order.addPizza(pizza);
+
+        System.out.println(
+                GREEN + "\nCustom pizza added successfully!" + RESET
         );
     }
     private void addDrink(Order order) {

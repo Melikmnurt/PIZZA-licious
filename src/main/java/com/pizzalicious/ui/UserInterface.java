@@ -263,11 +263,240 @@ public class UserInterface {
                 stuffedCrust
         );
 
+        // Add toppings
+        addMeatToppings(pizza);
+        addCheeseToppings(pizza);
+        addRegularToppings(pizza);
+        addSauces(pizza);
+
         order.addPizza(pizza);
 
         System.out.println(
                 GREEN + "\nCustom pizza added successfully!" + RESET
         );
+    }
+    private void addMeatToppings(Pizza pizza) {
+
+        while (true) {
+
+            System.out.println("\nADD MEATS");
+
+            System.out.println("1) Pepperoni");
+            System.out.println("2) Sausage");
+            System.out.println("3) Bacon");
+            System.out.println("0) Done");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (choice == 0) {
+                return;
+            }
+
+            String meatName;
+
+            switch (choice) {
+
+                case 1:
+                    meatName = "Pepperoni";
+                    break;
+
+                case 2:
+                    meatName = "Sausage";
+                    break;
+
+                case 3:
+                    meatName = "Bacon";
+                    break;
+
+                default:
+                    continue;
+            }
+
+            System.out.print("Quantity: ");
+
+            int quantity = scanner.nextInt();
+            scanner.nextLine();
+
+            pizza.addMeat(
+                    new Topping(
+                            meatName,
+                            "MEAT",
+                            quantity
+                    )
+            );
+        }
+    }
+    private void addCheeseToppings(Pizza pizza) {
+
+        while (true) {
+
+            System.out.println("\nADD CHEESES");
+
+            System.out.println("1) Mozzarella");
+            System.out.println("2) Cheddar");
+            System.out.println("3) Parmesan");
+            System.out.println("0) Done");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (choice == 0) {
+                return;
+            }
+
+            String cheeseName;
+
+            switch (choice) {
+
+                case 1:
+                    cheeseName = "Mozzarella";
+                    break;
+
+                case 2:
+                    cheeseName = "Cheddar";
+                    break;
+
+                case 3:
+                    cheeseName = "Parmesan";
+                    break;
+
+                default:
+                    continue;
+            }
+
+            System.out.print("Quantity: ");
+
+            int quantity = scanner.nextInt();
+            scanner.nextLine();
+
+            pizza.addCheese(
+                    new Topping(
+                            cheeseName,
+                            "CHEESE",
+                            quantity
+                    )
+            );
+        }
+    }
+    private void addRegularToppings(Pizza pizza) {
+
+        while (true) {
+
+            System.out.println("\nADD REGULAR TOPPINGS");
+
+            System.out.println("1) Tomatoes");
+            System.out.println("2) Onions");
+            System.out.println("3) Olives");
+            System.out.println("4) Bell Peppers");
+            System.out.println("5) Spinach");
+            System.out.println("6) Basil");
+            System.out.println("0) Done");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (choice == 0) {
+                return;
+            }
+
+            String toppingName;
+
+            switch (choice) {
+
+                case 1:
+                    toppingName = "Tomatoes";
+                    break;
+
+                case 2:
+                    toppingName = "Onions";
+                    break;
+
+                case 3:
+                    toppingName = "Olives";
+                    break;
+
+                case 4:
+                    toppingName = "Bell Peppers";
+                    break;
+
+                case 5:
+                    toppingName = "Spinach";
+                    break;
+
+                case 6:
+                    toppingName = "Basil";
+                    break;
+
+                default:
+                    continue;
+            }
+
+            System.out.print("Quantity: ");
+
+            int quantity = scanner.nextInt();
+            scanner.nextLine();
+
+            pizza.addRegularTopping(
+                    new Topping(
+                            toppingName,
+                            "REGULAR",
+                            quantity
+                    )
+            );
+        }
+    }
+    private void addSauces(Pizza pizza) {
+
+        while (true) {
+
+            System.out.println("\nADD SAUCES");
+
+            System.out.println("1) Marinara");
+            System.out.println("2) Alfredo");
+            System.out.println("3) Olive Oil");
+            System.out.println("0) Done");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (choice == 0) {
+                return;
+            }
+
+            String sauceName;
+
+            switch (choice) {
+
+                case 1:
+                    sauceName = "Marinara";
+                    break;
+
+                case 2:
+                    sauceName = "Alfredo";
+                    break;
+
+                case 3:
+                    sauceName = "Olive Oil";
+                    break;
+
+                default:
+                    continue;
+            }
+
+            System.out.print("Quantity: ");
+
+            int quantity = scanner.nextInt();
+            scanner.nextLine();
+
+            pizza.addSauce(
+                    new Topping(
+                            sauceName,
+                            "SAUCE",
+                            quantity
+                    )
+            );
+        }
     }
     private void addDrink(Order order) {
 

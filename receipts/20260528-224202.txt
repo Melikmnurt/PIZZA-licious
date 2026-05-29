@@ -1,0 +1,15 @@
+Order Summary
+-------------------------
+MEDIUM Pizza
+Crust: REGULAR
+Stuffed Crust
+Meats:
+  - Pepperoni x5
+Cheeses:
+  - Mozzarella x2
+Regular Toppings:
+  - Bell Peppers x0
+Price: $20.10
+
+
+Total: $20.10

@@ -1,5 +1,4 @@
 package com.pizzalicious.models;
-
 import java.util.ArrayList;
 
 // Represents a pizza ordered by a customer
